@@ -33,64 +33,6 @@ function compose (middleware) {
   }
 }
 
-class Layer {
-	constructor(path, methods, middleware) {
-		this.stack = Array.isArray(middleware) ? middleware : [middleware]
-		this.methods = []
-		this.setMethods(methods)
-		this.path = path
-	}
-	setMethods(methods) {
-		methods.forEach((method) => {
-			this.methods.push(method.toUpperCase())
-		})
-	}
-}
-
-class Router {
-	constructor() {
-		this.stack = []
-		this.methods = ['get', 'post', 'put']
-		this.params = {}
-		this.setMethods()
-	}
-
-	setMethods() {
-		const methods = this.methods 
-		methods.forEach( (method) => {
-			Router.prototype[method] = function(name, path, middleware) {
-				if (typeof path === 'string' || path instanceof RegExp) {
-			      middleware = Array.prototype.slice.call(arguments, 2);
-			    } else {
-			      middleware = Array.prototype.slice.call(arguments, 1);
-			      path = name
-			      name = null
-			    }
-
-			    const router = this 
-			    const stack = this.stack
-
-			    const route = new Layer(path, [method], middleware)
-
-			    stack.push(route)
-			}
-		})
-	}
-
-	// use() {
-	// 	let path = '/'
-	// 	const router = this
-	// 	const middleware = Array.prototype.slice.call(arguments)
-	// 	const hasPath = typeof middleware[0] === 'string'
-
-	// 	if(hasPath) {
-	// 		path = middleware.shift()
-	// 	}
-
-	// 	middleware.forEach()
-	// }
-}
-
 class Yao {
 	constructor() {
 		this.middleware = []
@@ -115,13 +57,4 @@ class Yao {
 	}
 }
 
-const yao = new Yao()
-const router = new Router()
-
-
-yao.use(function(req, res) {
-	res.body = 'nihao'
-})
-
-
-yao.listen(8080)
+module.exports = Yao
