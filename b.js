@@ -4,9 +4,9 @@ const router = new Router()
 router.get('/', function(req, res, next) {
 	res.body = '///'
 })
-router.get('/a', function(req, res, next) {
-	console.log('a')
-	res.end('hello, a')
+router.get('/b', function(req, res, next) {
+	console.log('b')
+	res.end('hello, b')
 })
 
 module.exports = router

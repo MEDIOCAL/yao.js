@@ -1,14 +1,13 @@
-const Yao = require('./yao')
-const Router = require('./router') 
+const Yao = require('./lib/yao')
+const Router = require('./lib/router') 
 const yao = new Yao()
 const router = new Router()
 
 const A = require('./a')
-
-console.log(A)
+const B = require('./b')
 
 router.use('/', A.routes())
-router.use('/cxh', A.routes())
+router.use('/cxh', B.routes())
 
 console.log(router)
 
