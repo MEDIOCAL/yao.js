@@ -2,7 +2,8 @@ const Router = require('./lib/router')
 const router = new Router()
 
 router.get('/', function(req, res, next) {
-	res.body = '///'
+	
+	res.end('nihao');
 })
 router.get('/a', function(req, res, next) {
 	console.log('a')
